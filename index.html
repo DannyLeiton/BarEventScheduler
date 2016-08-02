@@ -1,0 +1,30 @@
+<!Doctype html>
+<html>
+<head>
+    <link rel='stylesheet' href='bower_components/fullcalendar/dist/fullcalendar.css'>
+    <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.1.custom.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src='bower_components/jquery/dist/jquery.min.js'></script>
+    <script src='bower_components/moment/min/moment.min.js'></script>
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui-1.10.1.custom.min.js"></script>    
+    <script src='bower_components/fullcalendar/dist/fullcalendar.js'></script>
+    <script src='js/eventScheduler.js'></script>
+    <title>Bar Event Scheduler</title>
+</head>
+<body>
+    <div id='calendar'></div>
+    <div id='dialog-form'' title="Insert New Event">
+        <p class="validateTips">All form fields are required.</p>
+        <form>
+            <fieldset>
+                <label for="show">Show:</label>
+                <input type="text" name="show" id="show" placeholder="Iron Maiden" class="text ui-widget-content ui-corner-all">
+                <label for="description">Description:</label>
+                <textarea rows="3" cols="30" name="description" id="description" placeholder="Unplugged concert" class="text ui-widget-content ui-corner-all"></textarea>
+                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
