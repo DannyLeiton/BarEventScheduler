@@ -13,6 +13,7 @@
     <title>Bar Event Scheduler</title>
 </head>
 <body>
+    <h1>Awesome Bar Event Scheduler</h1>
     <div id='calendar'></div>
     <div id='dialog-form'' title="Insert New Event">
         <p class="validateTips">All form fields are required.</p>
@@ -22,6 +23,18 @@
                 <input type="text" name="show" id="show" placeholder="Iron Maiden" class="text ui-widget-content ui-corner-all">
                 <label for="description">Description:</label>
                 <textarea rows="3" cols="30" name="description" id="description" placeholder="Unplugged concert" class="text ui-widget-content ui-corner-all"></textarea>
+                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+            </fieldset>
+        </form>
+    </div>
+    <div id='dialog2-form'' title="Edit Selected Event">
+        <p class="validateTips">All form fields are required.</p>
+        <form>
+            <fieldset>
+                <label for="show2">Show:</label>
+                <input type="text" name="show2" id="show2" class="text ui-widget-content ui-corner-all">
+                <label for="description2">Description:</label>
+                <textarea rows="3" cols="30" name="description2" id="description2" class="text ui-widget-content ui-corner-all"></textarea>
                 <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
             </fieldset>
         </form>

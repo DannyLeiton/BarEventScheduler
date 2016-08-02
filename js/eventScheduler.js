@@ -21,22 +21,59 @@ function init() {
         }
     });
  
+    var dialog2 = $("#dialog2-form").dialog({
+        show:{effect:"blind", duration:500},
+	      hide:{effect:"explode", duration:500},
+        autoOpen: false,
+        height: 350,
+        width: 350,
+        modal: true,
+        buttons: {
+            "Delete": deleteEvent,
+            "Edit": editEvent,
+            Cancel: function() {
+                $(this).dialog("close");
+            }
+        },
+        close: function() {
+            form2[0].reset();
+            allFields.removeClass("ui-state-error" );
+        }
+    });
+
     var form = dialog.find("form").on("submit", function(event) {
       event.preventDefault();
       addEvent();
-    }); form,
- 
+    }); form, 
     show = $("#show"),
     description = $("#description"),
     allFields = $([]).add(show).add(description),
     tips = $(".validateTips");
  
+    var form2 = dialog.find("form").on("submit", function(event) {
+      event.preventDefault();
+      addEvent();
+    }); form2,
+    show2 = $("#show2"),
+    description2 = $("#description2"),
+    allFields2 = $([]).add(show2).add(description2),
+    tips2 = $(".validateTips");
+
     function updateTips(t) {
       tips
         .text( t )
         .addClass("ui-state-highlight");
       setTimeout(function() {
         tips.removeClass("ui-state-highlight", 1500);
+      }, 500);
+    }
+
+    function updateTips2(t) {
+      tips2
+        .text( t )
+        .addClass("ui-state-highlight");
+      setTimeout(function() {
+        tips2.removeClass("ui-state-highlight", 1500);
       }, 500);
     }
  
@@ -59,9 +96,8 @@ function init() {
  
       if(valid){
         var event = {
-              title  : show.val()+" <br/>: "+description.val(),
-              start  : day,
-              allDay : false // will make the time show
+              title  : show.val()+":\n"+description.val(),
+              start  : day
           };
         calendar.fullCalendar( 'renderEvent', event);
         alert("New event succesfully added!");
@@ -69,29 +105,48 @@ function init() {
       }
       return valid;
     }
+
+    function editEvent() {
+      var valid = true;
+      allFields2.removeClass("ui-state-error" );
+      valid = valid && checkLength(show2, "show", 3, 50);
+      valid = valid && checkLength(description2, "description", 6, 144);
+ 
+      if(valid){
+        selectedEvent.title = show2.val()+":\n"+description2.val();
+        calendar.fullCalendar( 'updateEvent', selectedEvent);
+        alert("Event succesfully updated!");
+        dialog2.dialog("close");
+      }
+      return valid;
+    }
+
+    function deleteEvent() {
+      calendar.fullCalendar( 'removeEvents', selectedEvent._id);
+      alert("Event succesfully deleted!");
+      dialog2.dialog("close");
+    }
+
     var day;
+    var selectedEvent;
     var calendar = $('#calendar').fullCalendar({
-        dayClick: function(date, jsEvent, view) {
-            /*
-            alert('Clicked on: ' + date.format());
-
-            alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
-            alert('Current view: ' + view.name);
-
-            // change the day's background color just for fun
-            $(this).css('background-color', 'red');
-            */
-            day = date;
-            dialog.dialog("open");
-        },
+      dayClick: function(date) {
+        day = date;
+        dialog.dialog("open");
+      },
+      eventClick: function(event) {
+            selectedEvent = event;
+            $('#show2').val(event.title);
+            $('#description2').val(event.title);
+            dialog2.dialog("open");
+      },
       header: {
-        left: 'prev,next today',
+        left: 'prev',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay'
+        right: 'next'
       },
       editable: true,
-      eventLimit: true, // allow "more" link when too many events
+      eventLimit: true,
       events: [
         {
           title: 'All Day Event',
