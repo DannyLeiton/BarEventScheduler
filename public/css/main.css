@@ -1,0 +1,17 @@
+textarea {
+   resize: none;
+}
+h1{
+    text-align: center;
+    font-family: 3px solid red;
+}
+body{
+    min-width: 25%;
+}
+#imgDiv{
+    margin: auto;
+    background-image: url('../img/event.jpg');
+    background-size: 50px 50px;
+    height: 50px;
+    width: 50px;
+}
