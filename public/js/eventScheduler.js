@@ -101,7 +101,7 @@ function init() {
           };
         saveEvent(event);
         calendar.fullCalendar( 'renderEvent', event);
-        toastr["success"]("New event succesfully added!");
+        /*toastr["success"]*/alert("New event succesfully added!");
         dialog.dialog("close");
       }
       return valid;
