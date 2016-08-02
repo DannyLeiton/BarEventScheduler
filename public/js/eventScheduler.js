@@ -101,7 +101,7 @@ function init() {
           };
         saveEvent(event);
         calendar.fullCalendar( 'renderEvent', event);
-        alert("New event succesfully added!");
+        toastr["success"]("New event succesfully added!");
         dialog.dialog("close");
       }
       return valid;
@@ -126,7 +126,7 @@ function init() {
         selectedEvent.title = show2.val()+":\n"+description2.val();
         putEvent(selectedEvent);
         calendar.fullCalendar('updateEvent', selectedEvent);
-        alert("Event succesfully updated!");
+        toastr["success"]("Event succesfully updated!");
         dialog2.dialog("close");
       }
       return valid;
@@ -144,7 +144,7 @@ function init() {
     function deleteEvent() {
       removeEvent(selectedEvent);
       calendar.fullCalendar( 'removeEvents', selectedEvent._id);
-      alert("Event succesfully deleted!");
+      toastr["success"]("Event succesfully deleted!");
       dialog2.dialog("close");
     }
 
@@ -181,8 +181,36 @@ function init() {
                 url: '/events/',
                 type: "GET",                    
                 error: function() {
-                  alert('there was an error while fetching events!');
+                  toastr["error"]('there was an error while fetching events!');
                 }
               }
     });
+
+    $("#datepicker").datepicker({altFormat: "M d y",
+                                changeMonth: true,
+							                  changeYear: true
+                                });  
+
+    $("#datepicker").change(function() {
+      var selectedDate = $("#datepicker").val();
+      calendar.fullCalendar('gotoDate', moment(selectedDate))
+    });  
+
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
 }

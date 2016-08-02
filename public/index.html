@@ -3,6 +3,7 @@
 <head>
     <link rel='stylesheet' href='bower_components/fullcalendar/dist/fullcalendar.css'>
     <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.1.custom.min.css" />
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css"/>
     <link rel="stylesheet" href="css/main.css" />
     <link rel="icon" type="image/png" sizes="32x32" href="img/icon.png">
     <!--<script src='bower_components/jquery/dist/jquery.min.js'></script>-->
@@ -10,12 +11,16 @@
     <script src="js/jquery-ui-1.10.1.custom.min.js"></script>    
     <script src='bower_components/moment/min/moment.min.js'></script>    
     <script src='bower_components/fullcalendar/dist/fullcalendar.js'></script>
+    <script src="bower_components/toastr/toastr.js"></script>
     <script src='js/eventScheduler.js'></script>
     <title>Bar Event Scheduler</title>
 </head>
 <body>
     <h1>Awesome Bar Event Scheduler</h1>
     <div id='imgDiv'></div>
+    <div id='datepickerDiv'>
+        <input type="text" id='datepicker' placeholder="Change the date!"/>
+    </div>
     <div id='calendar'></div>
     <div id='dialog-form'' title="Insert New Event">
         <p class="validateTips">All form fields are required.</p>
